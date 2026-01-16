@@ -1,9 +1,10 @@
 # Semantic Equity Research
 
-> **Institutional-grade stock analysis enhanced with semantic knowledge graphs, critical thinking frameworks, and cognitive bias detection.**
+> **Institutional-grade stock analysis enhanced with semantic knowledge graphs, cognitive frameworks, InfraNodus integration, and multi-language support.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blue.svg)](https://claude.ai)
+[![Version](https://img.shields.io/badge/version-1.1.0-green.svg)]()
 
 ## Overview
 
@@ -17,6 +18,28 @@ Semantic Equity Research is a Claude Code plugin that transforms standard equity
 | Implicit assumptions | Explicit assumption inventory |
 | Single perspective | Cognitive state awareness |
 | Static catalysts | Dynamic event relationships |
+| Manual InfraNodus | **Automatic MCP integration** |
+| English only | **Multi-language output (KO/EN/JA/ZH)** |
+
+## New in v1.1.0
+
+### 🌐 Multi-Language Support
+- **Analysis**: Always performed in English for data accuracy
+- **Output**: Automatically translated to your preferred language
+- **Default**: Korean (한국어)
+- **Options**: English, Japanese (日本語), Chinese (中文)
+
+### 🕸️ InfraNodus MCP Integration
+- Automatic knowledge graph creation from Event Ontology
+- Content gap analysis for investment blind spots
+- AI-generated research questions
+- No manual copy-paste required
+
+### 📁 Smart Folder Management
+- Set output folder once, auto-save all subsequent reports
+- No repeated folder prompts within session
+
+---
 
 ## Features
 
@@ -50,6 +73,14 @@ Semantic Equity Research is a Claude Code plugin that transforms standard equity
 - Narrative dominance analysis
 - Actionable recommendations
 
+### 🆕 12. InfraNodus Visualization (semantic-infra only)
+- Interactive knowledge graph link
+- Content gaps (investment blind spots)
+- AI-generated research questions
+- Network statistics
+
+---
+
 ## Installation
 
 ### Claude Code CLI
@@ -62,21 +93,55 @@ git clone https://github.com/reallygood83/semantic-equity-research.git
 cp -r semantic-equity-research/commands/* ~/.claude/commands/
 ```
 
-### Manual Installation
+### InfraNodus MCP Setup (Optional)
 
-1. Download this repository
-2. Copy `commands/semantic-research.md` to `~/.claude/commands/`
-3. Optionally copy `config/prompts/` for template references
+For automatic InfraNodus integration, add to `~/.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "infranodus": {
+      "command": "npx",
+      "args": ["-y", "infranodus-mcp-server"],
+      "env": {
+        "INFRANODUS_API_KEY": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+Get your API key at [InfraNodus.com](https://infranodus.com/settings/api)
+
+---
 
 ## Usage
 
-### Basic Analysis
+### Basic Analysis (Korean output - default)
 
 ```bash
 /semantic-research AAPL
 ```
 
-Generates complete 11-section analysis of Apple Inc.
+Generates complete 11-section analysis of Apple Inc. in Korean.
+
+### English Output
+
+```bash
+/semantic-research AAPL --lang=en
+```
+
+### Japanese Output
+
+```bash
+/semantic-research TSLA --lang=ja
+```
+
+### Chinese Output
+
+```bash
+/semantic-research MSFT --lang=zh
+```
 
 ### Detailed Analysis
 
@@ -89,6 +154,20 @@ Enhanced analysis with:
 - 8+ Critical Assumptions
 - Extended Pre-Mortem scenarios
 
+### With InfraNodus Integration
+
+```bash
+/semantic-infra AAPL
+```
+
+or
+
+```bash
+semantic-infra: AAPL
+```
+
+Creates automatic knowledge graph + content gap analysis.
+
 ### Korean Stocks
 
 ```bash
@@ -96,6 +175,34 @@ Enhanced analysis with:
 ```
 
 Includes Korea-specific considerations (exchange rate, chaebol governance, etc.)
+
+### Custom Output Folder
+
+```bash
+/semantic-infra PLTR --folder=/path/to/your/folder
+```
+
+---
+
+## Language Workflow
+
+```
+┌─────────────────────────────────────────────────┐
+│  1. Analysis: Always in English                 │
+│     - WebSearch in English for accuracy         │
+│     - Data collection in source language        │
+└─────────────────────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────┐
+│  2. Translation: To user's preferred language   │
+│     - Korean (default)                          │
+│     - English, Japanese, Chinese available      │
+│     - Technical terms kept in original          │
+└─────────────────────────────────────────────────┘
+```
+
+---
 
 ## Output Example
 
@@ -129,56 +236,79 @@ integration, with moderate acknowledgment of risks. Counter-narratives
 underdeliver on initial promise."
 ```
 
+---
+
 ## InfraNodus Integration
 
-The Event Ontology output can be directly pasted into [InfraNodus.com](https://infranodus.com) for:
+### Automatic (with MCP)
 
-1. **Network Visualization**: See how catalysts interconnect
-2. **Gap Analysis**: Find missing connections
-3. **Cluster Identification**: Group related factors
-4. **AI Insights**: Generate additional perspectives
+Use `/semantic-infra TICKER` to automatically:
 
-### How to Use
+1. Generate 11-section analysis
+2. Create InfraNodus knowledge graph
+3. Analyze content gaps
+4. Generate research questions
+5. Add Section 12 with visualization link
+
+### Manual
 
 1. Generate report with `/semantic-research TICKER`
 2. Copy the Event Ontology code block
 3. Paste into InfraNodus text input
 4. Analyze the resulting knowledge graph
 
-## Methodology
-
-See [docs/methodology.md](docs/methodology.md) for detailed explanation of:
-- Cognitive Variability Framework
-- Ontology Generation Principles
-- Critical Perspective Methodology
-- Bias Detection Techniques
+---
 
 ## File Structure
 
 ```
 semantic-equity-research/
 ├── .claude-plugin/
-│   ├── marketplace.json      # Plugin metadata
-│   └── plugin.json           # Configuration
+│   ├── marketplace.json           # Plugin metadata
+│   └── plugin.json                # Configuration (v1.1.0)
 ├── commands/
-│   └── semantic-research.md  # Main command (11 sections)
+│   ├── semantic-research.md       # Main command (11 sections)
+│   └── semantic-research-infranodus.md  # InfraNodus integration (12 sections)
 ├── config/prompts/
-│   ├── event-ontology.md     # Ontology generation rules
-│   ├── critical-assumptions.md # Assumption surfacing
-│   └── cognitive-alert.md    # Cognitive state detection
+│   ├── event-ontology.md          # Ontology generation rules
+│   ├── critical-assumptions.md    # Assumption surfacing
+│   └── cognitive-alert.md         # Cognitive state detection
 ├── docs/
-│   ├── methodology.md        # Theoretical background
+│   ├── methodology.md             # Theoretical background
 │   └── infranodus-integration.md
 ├── examples/sample_reports/
 ├── README.md
 └── LICENSE
 ```
 
+---
+
 ## Requirements
 
 - Claude Code CLI or Claude Desktop
 - Web search capability (for real-time data)
-- Optional: InfraNodus account for visualization
+- Optional: InfraNodus MCP server for automatic integration
+- Optional: InfraNodus account for manual visualization
+
+---
+
+## Version History
+
+### v1.1.0 (2026-01-17)
+- **NEW**: Multi-language support (ko, en, ja, zh)
+- **NEW**: InfraNodus MCP automatic integration
+- **NEW**: `/semantic-infra` command with Section 12
+- **NEW**: Smart folder management (set once, auto-save)
+- **CHANGE**: Korean is now default output language
+- **CHANGE**: Analysis always in English, then translated
+
+### v1.0.0 (2026-01-15)
+- Initial release with 11-section analysis
+- Event Ontology with wikilinks
+- Critical Assumptions Check
+- Cognitive State Alert
+
+---
 
 ## Contributing
 
@@ -192,8 +322,10 @@ Contributions welcome! Please:
 
 - Additional relation codes for ontology
 - Industry-specific templates
-- Localization (Korean, Japanese, etc.)
+- Additional languages (Spanish, German, etc.)
 - Additional cognitive frameworks
+
+---
 
 ## Credits
 
@@ -201,9 +333,13 @@ Contributions welcome! Please:
 - **Semantic Methods**: Based on [InfraNodus](https://infranodus.com) cognitive variability framework
 - **Critical Thinking**: Adapted from structured analytic techniques
 
+---
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
+
+---
 
 ## Disclaimer
 
@@ -211,4 +347,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-Made with 🧠 semantic thinking
+Made with 🧠 semantic thinking | 한국어 지원 🇰🇷

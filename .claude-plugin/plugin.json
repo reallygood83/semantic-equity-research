@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "name": "semantic-equity-research",
   "display_name": "Semantic Equity Research",
-  "description": "Advanced equity research with semantic knowledge graphs and cognitive frameworks",
-  "version": "1.0.0",
+  "description": "Advanced equity research with semantic knowledge graphs, cognitive frameworks, and InfraNodus integration",
+  "version": "1.1.0",
   "type": "command",
   "entry_point": "commands/semantic-research.md",
   "capabilities": {
@@ -11,17 +11,27 @@
     "mcp_tools": true,
     "file_operations": true
   },
+  "commands": {
+    "semantic-research": {
+      "entry_point": "commands/semantic-research.md",
+      "description": "Standard 11-section equity research analysis"
+    },
+    "semantic-infra": {
+      "entry_point": "commands/semantic-research-infranodus.md",
+      "description": "Equity research with automatic InfraNodus knowledge graph integration"
+    }
+  },
   "settings": {
     "output_directory": {
       "type": "string",
       "default": "./reports",
-      "description": "Directory to save generated reports"
+      "description": "Directory to save generated reports (asked once, remembered for session)"
     },
     "language": {
       "type": "string",
-      "default": "en",
-      "enum": ["en", "ko"],
-      "description": "Report language (English or Korean)"
+      "default": "ko",
+      "enum": ["ko", "en", "ja", "zh"],
+      "description": "Report output language (analysis always in English, then translated)"
     },
     "include_ontology": {
       "type": "boolean",
@@ -32,11 +42,24 @@
       "type": "boolean",
       "default": true,
       "description": "Include Cognitive State Alert section"
+    },
+    "infranodus_integration": {
+      "type": "boolean",
+      "default": false,
+      "description": "Automatically send Event Ontology to InfraNodus MCP (requires infranodus-mcp-server)"
     }
   },
   "prompts": {
     "event_ontology": "config/prompts/event-ontology.md",
     "critical_assumptions": "config/prompts/critical-assumptions.md",
     "cognitive_alert": "config/prompts/cognitive-alert.md"
+  },
+  "mcp_dependencies": {
+    "optional": [
+      {
+        "name": "infranodus-mcp-server",
+        "description": "Required for semantic-infra command to create knowledge graphs automatically"
+      }
+    ]
   }
 }
