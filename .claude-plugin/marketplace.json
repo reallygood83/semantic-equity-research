@@ -1,0 +1,46 @@
+{
+  "name": "Semantic Equity Research",
+  "description": "Institutional-grade stock analysis enhanced with semantic knowledge graphs, critical thinking frameworks, and cognitive state diagnostics. Generates 11-section research reports including Event Ontology networks, assumption validation, and cognitive bias detection.",
+  "version": "1.0.0",
+  "author": "reallygood83",
+  "homepage": "https://github.com/reallygood83/semantic-equity-research",
+  "repository": "https://github.com/reallygood83/semantic-equity-research",
+  "keywords": [
+    "equity-research",
+    "stock-analysis",
+    "semantic-analysis",
+    "knowledge-graph",
+    "ontology",
+    "infranodus",
+    "cognitive-variability",
+    "critical-thinking",
+    "investment",
+    "trading"
+  ],
+  "categories": [
+    "Finance",
+    "Research",
+    "Analysis"
+  ],
+  "license": "MIT",
+  "minClaudeVersion": "1.0.0",
+  "icon": "📊",
+  "commands": [
+    {
+      "name": "semantic-research",
+      "description": "Generate comprehensive 11-section equity research report with semantic enhancements",
+      "usage": "/semantic-research [TICKER] [--detailed]"
+    }
+  ],
+  "features": [
+    "Institutional-grade fundamental analysis",
+    "Event Ontology knowledge graphs in [[wikilinks]] format",
+    "Critical Assumptions Check with Devil's Advocate",
+    "Cognitive State Alert (BIASED/FOCUSED/DIVERSIFIED/DISPERSED)",
+    "InfraNodus-compatible output for network visualization"
+  ],
+  "dependencies": {
+    "mcp": ["sequential-thinking"],
+    "optional_mcp": ["infranodus"]
+  }
+}

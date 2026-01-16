@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "name": "semantic-equity-research",
+  "display_name": "Semantic Equity Research",
+  "description": "Advanced equity research with semantic knowledge graphs and cognitive frameworks",
+  "version": "1.0.0",
+  "type": "command",
+  "entry_point": "commands/semantic-research.md",
+  "capabilities": {
+    "web_search": true,
+    "mcp_tools": true,
+    "file_operations": true
+  },
+  "settings": {
+    "output_directory": {
+      "type": "string",
+      "default": "./reports",
+      "description": "Directory to save generated reports"
+    },
+    "language": {
+      "type": "string",
+      "default": "en",
+      "enum": ["en", "ko"],
+      "description": "Report language (English or Korean)"
+    },
+    "include_ontology": {
+      "type": "boolean",
+      "default": true,
+      "description": "Include Event Ontology section with [[wikilinks]]"
+    },
+    "include_cognitive_alert": {
+      "type": "boolean",
+      "default": true,
+      "description": "Include Cognitive State Alert section"
+    }
+  },
+  "prompts": {
+    "event_ontology": "config/prompts/event-ontology.md",
+    "critical_assumptions": "config/prompts/critical-assumptions.md",
+    "cognitive_alert": "config/prompts/cognitive-alert.md"
+  }
+}
